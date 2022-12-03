@@ -18,3 +18,28 @@ avatar:
   url: /images/avatar.jpg
   rounded: true
   opacity: 1
+
+footer:
+  since: 2022
+  powered:
+    enable: false
+
+creative_commons:
+  license: by-nc-sa
+  post: true
+  language: deed.zh
+  clipboard: false
+
+comment:
+  enable: true
+
+wordcloud:
+  enable: true
+  height: 350
+
+katex:
+  copy_tex: true
+  global: false
+  options: {}
+
+reward: false
