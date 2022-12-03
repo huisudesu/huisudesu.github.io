@@ -53,8 +53,10 @@ highlight:
 prismjs:
   enable: true
   preprocess: true
-  line_number: true
+  line_number: false
   tab_replace: ''
+  light: https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css
+  dark: https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-dark.css
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
