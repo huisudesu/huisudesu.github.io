@@ -1,0 +1,77 @@
+mode: light
+
+avatar:
+  url: /images/avatar.jpg
+  status:
+    enable: false
+
+banner:
+  enable: true
+  title: 
+    - 绘
+    - 素
+    - の
+    - Blog
+  src: /js/ui/banner.js
+  border: true
+  cloud:
+    enable: true
+    color: "white"
+  go_down:
+    enable: true
+    icon: icon-arrow-down-s-line
+
+social:
+
+pages:
+
+say:
+  enable: false
+
+reward:
+  enable: false
+
+menu:
+  custom:
+    title: Twitter
+    path: https://twitter.com/hsshhsxm
+    icon: icon-twitter-line
+
+footer:
+  since: 2022
+
+comment:
+  enable: true
+  tips:
+  candidates:
+    - utterances
+
+utterances:
+  enable: true
+  repo: hsshhsxm/hsshhsxm.github.io
+  issue-term: pathname
+  label: comment
+  theme: github-light
+
+wordcloud:
+  enable: true
+
+post_meta:
+  item_text: false
+  created_at: true
+  updated_at: false
+  categories: true
+  tags: true
+
+# 关闭 highlight
+highlight:
+  enable: false
+# 启用 prism
+prismjs:
+  enable: true
+  preprocess: true
+  line_number: false
+  tab_replace: ""
+
+codeblock:
+  copy_btn: true
