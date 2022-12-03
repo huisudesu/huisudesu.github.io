@@ -109,7 +109,7 @@ prismjs:
   line_number: false
   tab_replace: ''
   
- # Deployment
+# Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
