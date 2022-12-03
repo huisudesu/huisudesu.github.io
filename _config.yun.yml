@@ -46,6 +46,13 @@ menu:
 
 pages:
 
+post_meta:
+  item_text: false
+  created_at: true
+  updated_at: false
+  categories: true
+  tags: true
+
 footer:
   since: 2022
   powered:
@@ -66,7 +73,10 @@ wordcloud:
 
 katex:
   copy_tex: true
-  global: false
+  global: true
   options: {}
+  
+codeblock:
+  copy_btn: true
 
 reward: false

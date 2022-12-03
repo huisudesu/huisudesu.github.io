@@ -1,6 +1,7 @@
 ---
 title: 机场与工具记录
 date: 2022-02-02
+hide: true
 tags:
 - 机场
 categories:

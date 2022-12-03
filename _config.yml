@@ -99,10 +99,21 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: yun
 
-# Deployment
+# 关闭 highlight
+highlight:
+  enable: false
+# 启用 prism
+prismjs:
+  enable: true
+  preprocess: true
+  line_number: false
+  tab_replace: ''
+  
+ # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:hsshhsxm/hsshhsxm.github.io.git
-  branch: main
+  repo: git@github.com:huisudesu/huisudesu.github.io.git
+  branch: blog
   message: 
+
