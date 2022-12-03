@@ -12,3 +12,9 @@ banner:
   go_down:
     enable: true
     icon: ri:arrow-down-s-line
+
+avatar:
+  enable: true
+  url: /images/avatar.jpg
+  rounded: true
+  opacity: 1
