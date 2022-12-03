@@ -1,6 +1,10 @@
 banner:
   enable: true
-  title: 绘素のBlog
+  title: 
+    - 绘
+    - 素
+    - の
+    - Blog
   border: false
   cloud:
     enable: true
