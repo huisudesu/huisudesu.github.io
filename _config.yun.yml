@@ -13,6 +13,9 @@ banner:
     enable: true
     icon: ri:arrow-down-s-line
 
+say:
+  enable: false
+
 avatar:
   enable: true
   url: /images/avatar.jpg
