@@ -11,8 +11,6 @@ tags:
 
 ## 变色龙哈希简介
 
-[变色龙哈希 Chameleon Hash](./变色龙哈希%20Chameleon%20Hash%2076234fd8-bd2d-4959-a4fb-1b8fc44c41f8.md "变色龙哈希 Chameleon Hash")
-
 在介绍变色龙哈希之前，先介绍陷门（Trapdoor）函数。单向陷门函数 $f$ 是具有以下性质的一类函数：
 
 * 对于定义域 $D$ 中的任意元素 $x$ ，可在多项式时间内计算得到 $f(x)$
@@ -35,23 +33,15 @@ tags:
 
 * $Verify(hk,m,h,r)\rightarrow \{0,1\}$ 验证函数，输出True or False
 
-&nbsp;
 
 > 除了**不可伪造性**以外，变色龙签名具有比较有趣的性质。我们假定 Bob 掌握一个变色龙哈希算法 的陷门信息，而 Alice 签名的前置哈希算法就是该算法 。当 Alice 签名以后，Bob 如果拿着 Alice 的签名结果给第三方 Charlie 看，第三方必然不会相信这个签名结果，因为 Charlie 知道 Bob 拿有哈希算法的陷门信息，他可以任意更改被签名的消息。即，Bob 不能将 Alice 签名的合法性向第三方展示。这是变色龙签名的**不可传递性**（non-transferability）。另外，Alice 也由于没有陷门信息，不能找到哈希碰撞，从而不能否认其已经签过名，这就是**不可抵赖性**（non-repudiation）。\[1\]
 
-&nbsp;
 
 在区块链中，如果将连接区块链的哈希函数改为变色龙哈希函数，陷门信息由**特定人**掌握，则这些特定人就可以任意修改区块数据，而不会破坏链式结构的完整性。这给区块链带来了**可编辑**的特性。\[1\]
 
 下面介绍一些前置知识和变色龙哈希的实例。
 
 ## 前置知识
-
-[双线性映射（Bilinear Mapping）](./双线性映射（Bilinear%20Mapping）%20042d9588-642d-4490-908e-5dfa154b832a.md "双线性映射（Bilinear Mapping）")
-
-[拉格朗日多项式（Lagrange polynomial）](./拉格朗日多项式（Lagrange%20polynomial）%2035a89b48-ab61-4ce6-bb65-a336dcc66228.md "拉格朗日多项式（Lagrange polynomial）")
-
-[Gap Diffie-Hellman (GDP)](./Gap%20Diffie-Hellman%20(GDP)%2041b08541-8fda-4776-8cf8-41c3bb9f8695.md "Gap Diffie-Hellman (GDP)")
 
 ### 双线性映射（Bilinear Mapping）
 
@@ -75,7 +65,7 @@ $(G_1, G_2, G_T)$ 是三个素数 $p$ 阶群乘法循环群，双线性映射 $e
 
 拉格朗日基本多项式$l _{j}(x)$的特点是在 $x_{j}$上取值为**1**，在其它的点 $x_{i},\,i\neq j$上取值为**0**。
 
-### Gap Diffie-Hellman (GDP) **Group**
+### Gap Diffie-Hellman (GDP) Group
 
 设 $G$ 是一个素数 $p$ 阶的乘法循环群，生成元为 $g$。
 
@@ -96,8 +86,6 @@ $(G_1, G_2, G_T)$ 是三个素数 $p$ 阶群乘法循环群，双线性映射 $e
 * Computational Diffie-Hellman (CDH) problem 没有多项式时间算法以不可忽略的概率解决
 
 ## 变色龙哈希
-
-[Public Coin Chameleon Hash](./Public%20Coin%20Chameleon%20Hash%209649262b-99e5-4c0b-a02e-50cfecb07cf9.md "Public Coin Chameleon Hash")
 
 Public Coin Chameleon Hash\[2\] 是一个变色龙哈希的实现，函数的具体实现如下：
 
@@ -154,12 +142,6 @@ Public Coin Chameleon Hash\[2\] 是一个变色龙哈希的实现，函数的具
 &nbsp;
 
 ## 阈值变色龙哈希
-
-[Threshold Trapdoor Chameleon Hash](./Threshold%20Trapdoor%20Chameleon%20Hash%2075b1e6b8-1331-49f6-914f-fc87c0581257.md "Threshold Trapdoor Chameleon Hash")
-
-[Threshold Trapdoor Chameleon Hash Instantiation](./Threshold%20Trapdoor%20Chameleon%20Hash%20Instantiation%2093def7f0-5740-4cf0-86aa-501f080c3458.md "Threshold Trapdoor Chameleon Hash Instantiation")
-
-[拉格朗日多项式证明](./拉格朗日多项式证明%20805540aa-710b-42ae-b070-da91044f816a.md "拉格朗日多项式证明")
 
 ### 简介
 
@@ -285,10 +267,6 @@ $x=i$ 时，取值为1，否则，为0
 
 ## 去中心化变色龙哈希
 
-[Decentralized Chameleon Hash](./Decentralized%20Chameleon%20Hash%200416701d-7a09-4cfd-8bfd-5f68e5c4f49b.md "Decentralized Chameleon Hash")
-
-[Decentralized Chameleon Hash Instantiation](./Decentralized%20Chameleon%20Hash%20Instantiation%20d6eae495-878e-42e5-b5a5-598cca417123.md "Decentralized Chameleon Hash Instantiation")
-
 ### 简介
 
 去中心化变色龙哈希（Decentralized Chameleon Hash）\[4\]是一种完全去中心化的变色龙哈希。其基本思想如下：
@@ -330,7 +308,7 @@ $ID:\{0,1\}^*\rightarrow Z_p^*$
       * 检查 $\Pi_{k=1}^t g^{\lambda_k\cdot f_j(ID(P_k))}=g^{a_j,0}$ 是否成立
 
         * 其中，$\lambda_k=\Pi_{j=1,j\not=k}^t\frac{ID(P_j)}{ID(P_j)-ID(P_k)}$ 
-        * [拉格朗日多项式（Lagrange polynomial）](./拉格朗日多项式（Lagrange%20polynomial）%2035a89b48-ab61-4ce6-bb65-a336dcc66228.md "拉格朗日多项式（Lagrange polynomial）")在 $0$ 点的情况，用来保证 $t + 1$个点在一个 $t-1$ 次的多项式上，即后两个数据正确
+        * 拉格朗日多项式（Lagrange polynomial）在 $0$ 点的情况，用来保证 $t + 1$个点在一个 $t-1$ 次的多项式上，即后两个数据正确
 
     * 输出
 
