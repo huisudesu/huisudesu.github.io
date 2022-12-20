@@ -57,7 +57,7 @@ tags:
 
 $(G_1, G_2, G_T)$ 是三个素数 $p$ 阶群乘法循环群，双线性映射 $e:G_1\times G_2\rightarrow G_T$ 是满足如下性质的映射：
 
-* 双线性：对于$\forall g_1\in G_1,g_2\in G_2,a,b\in Z_p$，均有$e(g_1^a,g_2^b)=e(g_1,g_2)^{ab}$成立
+* 双线性：对于 $\forall g_1\in G_1,g_2\in G_2,a,b\in Z_p$，均有$e(g_1^a,g_2^b)=e(g_1,g_2)^{ab}$成立
 
 * 非退化性：$\exist g_1\in G_1, g_2\in G_2$满足$e(g_1,g_2)\not=1_{G_T}$
 
@@ -111,7 +111,7 @@ Public Coin Chameleon Hash\[2\] 是一个变色龙哈希的实现，函数的具
 
 * $KeyGen(params)\rightarrow (hk,tk)$
 
-  * 生成$x\xleftarrow{R}Z_p, \widehat{h}\xleftarrow{R} G_1$
+  * 生成 $x\xleftarrow{R}Z_p, \widehat{h}\xleftarrow{R} G_1$
 
   * $h_1=g^x_1, h_2=g^x_2$
 
@@ -121,7 +121,7 @@ Public Coin Chameleon Hash\[2\] 是一个变色龙哈希的实现，函数的具
 
 * $Hash(m,hk)\rightarrow (\hslash,R)$
 
-  * 随机数$r\xleftarrow{R}Z_p$
+  * 随机数 $r\xleftarrow{R}Z_p$
 
   * $\hslash=h_1^r\widehat{h}^m$
 
@@ -141,7 +141,7 @@ Public Coin Chameleon Hash\[2\] 是一个变色龙哈希的实现，函数的具
 
 * $Hcol(tk,m,m')$
 
-  * 新message $m'$，计算新的$R'$
+  * 新message $m'$ ，计算新的 $R'$
 
   * $R'=(\frac{\hslash}{\widehat{h}^{m'}})^{\frac{1}{x}}$
 
