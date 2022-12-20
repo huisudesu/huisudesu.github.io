@@ -287,7 +287,7 @@ $x=i$ 时，取值为1，否则，为0
 
 $g$ 是 $G$ 的生成元
 
-$ID:\{0,1\}^*\rightarrow Z_p^*$
+$$ID:\{0,1\}^*\rightarrow Z_p^*$$
 
 * Key generation
 
@@ -321,55 +321,55 @@ $ID:\{0,1\}^*\rightarrow Z_p^*$
         * 其中，$f(x)=\sum_{j=1}^tf_j(x)$
         * 点 $ID(P_i)$ 在 $t$ 个 $t-1$ 次多项式上的值的和，即点 $ID(P_i)$ 在新的多项式上的值
 
-  * Hashing
+ * Hashing
 
-    * 输入公钥 $g^s$ 和消息 $m\in\{0,1\}^*$
+   * 输入公钥 $g^s$ 和消息 $m\in\{0,1\}^*$
 
-    * 先计算 $u\leftarrow H(g^s,m)$
+   * 先计算 $u\leftarrow H(g^s,m)$
 
-      * 其中， $H:G\times\{0,1\}^*\rightarrow G$ 是一个加密哈希函数
+     * 其中， $H:G\times\{0,1\}^*\rightarrow G$ 是一个加密哈希函数
 
-    * 选择随机整数 $e\in Z_p^*$
+   * 选择随机整数 $e\in Z_p^*$
 
-    * 输出
+   * 输出
 
-      * 随机数 $r=(g^e,g^{se})$
+     * 随机数 $r=(g^e,g^{se})$
 
-      * 哈希 $h\leftarrow g^eu^m$
+     * 哈希 $h\leftarrow g^eu^m$
 
-  * Rehashing
+ * Rehashing
 
-    * 输入公钥 $g^s$ 和原消息-随机数对 $(m,r=(g^e,g^{se}))$
+   * 输入公钥 $g^s$ 和原消息-随机数对 $(m,r=(g^e,g^{se}))$
 
-    * 计算 $u\leftarrow H(g^s,m)$
+   * 计算 $u\leftarrow H(g^s,m)$
 
-    * 输出哈希 $h\leftarrow g^eu^m$
+   * 输出哈希 $h\leftarrow g^eu^m$
 
-  * Adaptation
+ * Adaptation
 
-    * 输入私钥 $s_i$ 、公钥 $g^s$ 、消息-随机数对 $(m,r=(g^e,g^{se}))$ 和新消息$m'\in\{0,1\}^*$
+   * 输入私钥 $s_i$ 、公钥 $g^s$ 、消息-随机数对 $(m,r=(g^e,g^{se}))$ 和新消息$m'\in\{0,1\}^*$
 
-    * 参与者 $P_i\ (i\in\{1,\dots,t\})$ 执行：
+   * 参与者 $P_i\ (i\in\{1,\dots,t\})$ 执行：
 
-      * 计算 $g^{e'}\leftarrow g^eu^{m-m'}$
+     * 计算 $g^{e'}\leftarrow g^eu^{m-m'}$
 
-        * 其中， $u\leftarrow H(g^s,m)$
+       * 其中， $u\leftarrow H(g^s,m)$
 
-      * 计算 $\eta_i\leftarrow (g^{e'})^{\lambda_i\cdot s_i}$ 并发送到 $P_j\ (i\in\{1,\dots,t\}\backslash i)$
+     * 计算 $\eta_i\leftarrow (g^{e'})^{\lambda_i\cdot s_i}$ 并发送到 $P_j\ (i\in\{1,\dots,t\}\backslash i)$
 
-        * 其中， $\lambda_i=\Pi_{j=1,j\not=i}^t\frac{ID(P_j)}{ID(P_j)-ID(P_i)}$
+       * 其中， $\lambda_i=\Pi_{j=1,j\not=i}^t\frac{ID(P_j)}{ID(P_j)-ID(P_i)}$
 
-      * 收到 $(\eta_1,\dots,\eta_{i-1},\eta_{i+1},\dots,\eta_t)$ 后，计算 $g^{se'}\leftarrow \Pi_{j=1}^t\eta_j$
+     * 收到 $(\eta_1,\dots,\eta_{i-1},\eta_{i+1},\dots,\eta_t)$ 后，计算 $g^{se'}\leftarrow \Pi_{j=1}^t\eta_j$
 
-      * 输出新的随机数$r'=(g^{e'},g^{se'})$
+     * 输出新的随机数$r'=(g^{e'},g^{se'})$
 
-  * Verification
+ * Verification
 
-    * 输入公钥 $pk$ 、消息-随机数对 $(m,r=(g^e,g^{se}))$ 和新消息-新随机数对 $(m',r'=(g^{e'},g^{se'}))$
+   * 输入公钥 $pk$ 、消息-随机数对 $(m,r=(g^e,g^{se}))$ 和新消息-新随机数对 $(m',r'=(g^{e'},g^{se'}))$
 
-    * 计算  $u\leftarrow H(g^s,m)$
+   * 计算  $u\leftarrow H(g^s,m)$
 
-    * 如果 $g^eu^m=g^{e'}u^{m'}$ 且 $(g, g^s, g^{e'}, g^{se'} )$ 是 Diffie-Hellman tuple，输出1
+   * 如果 $g^eu^m=g^{e'}u^{m'}$ 且 $(g, g^s, g^{e'}, g^{se'} )$ 是 Diffie-Hellman tuple，输出1
 
 ## 参考
 
