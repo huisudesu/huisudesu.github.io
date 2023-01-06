@@ -1,6 +1,7 @@
 ---
 title: 《艾尔登法环》
 date: 2022-04-29
+hide: true
 categories:
 - 随笔
 - 游戏
