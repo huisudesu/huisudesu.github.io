@@ -1,6 +1,7 @@
 ---
 title: 《Blue Reflection 帝》
 date: 2022-03-22
+hide: true
 categories:
 - 随笔
 - 游戏
