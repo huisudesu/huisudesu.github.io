@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="绘素"><meta name="copyright" content="绘素"><meta name="generator" content="Hexo 6.3.0"><meta name="theme" content="hexo-theme-yun"><title>ffmpeg命令 | 绘素のBlog</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="stylesheet" type="text/css" href="https://fastly.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script defer src="https://fastly.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><link rel="stylesheet" type="text/css" href="https://fastly.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.css"><script defer src="https://fastly.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><script defer src="https://fastly.jsdelivr.net/npm/katex@latest/dist/contrib/auto-render.min.js"></script><script type="module">import { renderKatex } from '/js/utils.js'
+document.addEventListener("DOMContentLoaded", () => {
+  renderKatex({
+    ...{},
+    ...undefined?.options,
+  });
+});</script><link rel="icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"huisudesu.com","root":"/","title":["绘","素","の","Blog"],"version":"1.10.9","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","fireworks":{"colors":null},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><meta name="description" content="一些ffmpeg命令，包含渲染参数，查看信息，拼接视频">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ffmpeg命令">
+<meta property="og:url" content="https://huisudesu.com/technology/ffmpeg-cmd/index.html">
+<meta property="og:site_name" content="绘素のBlog">
+<meta property="og:description" content="一些ffmpeg命令，包含渲染参数，查看信息，拼接视频">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-09T00:00:00.000Z">
+<meta property="article:modified_time" content="2023-01-07T14:16:02.323Z">
+<meta property="article:author" content="绘素">
+<meta property="article:tag" content="ffmpeg">
+<meta property="article:tag" content="视频处理">
+<meta name="twitter:card" content="summary"><script>(function() {
+  if (CONFIG.mode !== 'auto') return
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="绘素"><img width="96" loading="lazy" src="/images/avatar.jpg" alt="绘素"></a><div class="site-author-name"><a href="/about/">绘素</a></div><span class="site-name">绘素のBlog</span><sub class="site-subtitle"></sub><div class="site-description"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">14</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">22</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://twitter.com/huisudesu/" title="Twitter"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:twitter-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93"><span class="toc-number">1.</span> <span class="toc-text">渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">查看信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%BC%E6%8E%A5%E8%A7%86%E9%A2%91"><span class="toc-number">3.</span> <span class="toc-text">拼接视频</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://huisudesu.com/technology/ffmpeg-cmd/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="绘素"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="绘素のBlog"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">ffmpeg命令</h1><div class="post-meta"><div class="post-time"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2022-05-09 00:00:00" itemprop="dateCreated datePublished" datetime="2022-05-09T00:00:00+00:00">2022-05-09</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E6%8A%80%E6%9C%AF/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">技术</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/ffmpeg/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">ffmpeg</span></a><a class="tag-item" href="/tags/%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">视频处理</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><p>渲染命令</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ffmpeg <span class="token parameter variable">-i</span> input.mp4 output.mp4</code></pre>
+
+<p>一些渲染参数</p>
+<ul>
+<li><code>-hwaccel cuda</code>：使用cuda加速</li>
+<li><code>-c:v h264_cuvid</code>：使用n卡加速的h264解码</li>
+<li><code>-c:v h264_nvenc</code>：使用n卡加速的h264编码</li>
+<li><code>-s 1920x1080</code>：分辨率</li>
+<li><code>-b:v 2000k</code>：比特率</li>
+<li><code>-vn</code>：不输出视频</li>
+<li><code>-ss hh:mm:ss</code>：开始时间</li>
+<li><code>-t hh:mm:ss</code>：结束时间</li>
+<li><code>-acodec copy</code>：音频编码与源格式相同</li>
+</ul>
+<h2 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h2><p>查看支持的硬件加速选项</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ffmpeg <span class="token parameter variable">-hwaccels</span></code></pre>
+
+<p>查看支持的编码器</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ffmpeg <span class="token parameter variable">-encoders</span></code></pre>
+
+<p>查看支持n卡加速的编码器</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ffmpeg <span class="token parameter variable">-encoders</span> <span class="token operator">|</span> sls nv</code></pre>
+
+<p>查看支持的h264编码器</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ffmpeg <span class="token parameter variable">-encoders</span> <span class="token operator">|</span> sls h264</code></pre>
+
+<p>查看支持的解码器</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ffmpeg <span class="token parameter variable">-decoders</span></code></pre>
+
+<p>查看支持n卡加速的解码器</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ffmpeg <span class="token parameter variable">-decoders</span> <span class="token operator">|</span> sls nv</code></pre>
+
+<p>查看支持的h264解码器</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ffmpeg <span class="token parameter variable">-decoders</span> <span class="token operator">|</span> sls h264</code></pre>
+
+<h2 id="拼接视频"><a href="#拼接视频" class="headerlink" title="拼接视频"></a>拼接视频</h2><p>转换成ts文件拼接：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ffmpeg <span class="token parameter variable">-i</span> <span class="token variable">$f1</span> <span class="token parameter variable">-c:v</span> copy <span class="token parameter variable">-c:a</span> copy <span class="token parameter variable">-vbsf</span> h264_mp4toannexb <span class="token number">1</span>.ts
+ffmpeg <span class="token parameter variable">-i</span> <span class="token variable">$f2</span> <span class="token parameter variable">-c:v</span> copy <span class="token parameter variable">-c:a</span> copy <span class="token parameter variable">-vbsf</span> h264_mp4toannexb <span class="token number">2</span>.ts
+ffmpeg <span class="token parameter variable">-i</span> <span class="token variable">$f3</span> <span class="token parameter variable">-c:v</span> copy <span class="token parameter variable">-c:a</span> copy <span class="token parameter variable">-vbsf</span> h264_mp4toannexb <span class="token number">3</span>.ts
+ffmpeg <span class="token parameter variable">-i</span> <span class="token variable">$f4</span> <span class="token parameter variable">-c:v</span> copy <span class="token parameter variable">-c:a</span> copy <span class="token parameter variable">-vbsf</span> h264_mp4toannexb <span class="token number">4</span>.ts
+ffmpeg <span class="token parameter variable">-i</span> <span class="token variable">$f5</span> <span class="token parameter variable">-c:v</span> copy <span class="token parameter variable">-c:a</span> copy <span class="token parameter variable">-vbsf</span> h264_mp4toannexb <span class="token number">5</span>.ts
+ffmpeg <span class="token parameter variable">-i</span> <span class="token variable">$f6</span> <span class="token parameter variable">-c:v</span> copy <span class="token parameter variable">-c:a</span> copy <span class="token parameter variable">-vbsf</span> h264_mp4toannexb <span class="token number">6</span>.ts
+
+
+ffmpeg <span class="token parameter variable">-i</span> ”concat:1.ts<span class="token operator">|</span><span class="token number">2</span>.ts<span class="token operator">|</span><span class="token number">3</span>.ts<span class="token operator">|</span><span class="token number">4</span>.ts<span class="token operator">|</span><span class="token number">5</span>.ts<span class="token operator">|</span><span class="token number">6</span>.ts“ <span class="token parameter variable">-acodec</span> copy <span class="token parameter variable">-vcodec</span> copy <span class="token parameter variable">-absf</span> aac_adtstoasc <span class="token variable">$f7</span>
+
+<span class="token function">rm</span> *.ts</code></pre>
+</div></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/essay/AI%EF%BC%9A%E6%A2%A6%E5%A2%83%E6%A1%A3%E6%A1%88/" rel="prev" title="《AI：梦境档案 涅槃肇始》"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">《AI：梦境档案 涅槃肇始》</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/technology/windows-change-ip-dns/" rel="next" title="Windows使用bat脚本一键更改网络设置"><span class="post-nav-text">Windows使用bat脚本一键更改网络设置</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2022 – 2023 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:cloud-line"></span></span><span class="author"> 绘素</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></body></html>
